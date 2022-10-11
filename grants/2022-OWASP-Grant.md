@@ -1,11 +1,9 @@
-# *Help wanted!*
+Oct. 3rd, 2022
 
-Hello everybody!
+Recently, we were granted a generous amount of money from  
+our friends at [Contrast Security](https://www.contrastsecurity.com/).
 
-Recently, we got granted a generous amount of money from  
-our friends at [Contrast](https://www.contrastsecurity.com/). 
-This grant helps us to develop more labs so we can expand our  
-training curriculum on SKF.
+The goal of this grant is to helps us to align (and complete) the labs with WTSG / ASVS.
 
 ---
 
@@ -40,7 +38,7 @@ It is very important for a lab to stick to our standard templating
 and styling. Please take this onto account very seriously.  
 
 >The markdown of the labs that you are writing must
- be stored [ here ](https://github.com/blabla1337/skf-labs/tree/master/md/Python)
+ be stored [here](https://github.com/blabla1337/skf-labs/tree/master/md/Python)
 
 >And any screenshots that you are taking for the lab must be stored [here](https://github.com/blabla1337/skf-labs/tree/master/.gitbook/assets)
 
@@ -67,21 +65,6 @@ Or finally:
 `
 python-1337-command_injection_WSTG_coverage
 `
-
----
-
-### *Participation Etiquette*
-
-If you want to start on a lab, you can assign this lab to yourself.  
-This is an indication for other contributors that this lab is already  
-actively worked on and prevents duplicates. 
-
-Now, we expect you to only assign 1 lab at a time so there is equal opportunity  
-for other people to participate. 
-
-After you have created your PR and the PR is approved and merged by the SKF   
-team, you can claim another lab to work on :-)
-
 ---
 
 ### *compensenation*
@@ -101,4 +84,3 @@ of money when it is delivered.
 ---
 
 ### *Invoicing to OWASP to get compensated*
-
