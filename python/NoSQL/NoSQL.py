@@ -38,6 +38,8 @@ def register_route():
     elif request.method == 'POST':
         username = request.get_json()['username']
         password = request.get_json()['password']
+        if username == "" or password == "":
+            return dumps({"error": "Username or password cannot be empty"}, default=str), 403
         user = users.find_one(
             {"username": re.compile(username, re.IGNORECASE)})
         if user:

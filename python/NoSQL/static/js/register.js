@@ -17,6 +17,11 @@ form.addEventListener("submit", async (e) => {
   if (response.status === 200) {
     window.location.href = "/login";
   } else {
-    error.innerText = "User already exists";
+    const data = await response.json();
+    let errorMessage = "Error registering user";
+    if (data.error) {
+      errorMessage = data.error;
+    }
+    error.innerText = errorMessage;
   }
 });
