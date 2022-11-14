@@ -54,11 +54,13 @@ The most popular NoSQL database is MongoDB, so the database being used is likely
 
 After we register an account and log in, we can see that the app has a comment section. We can add a comment and update the comment.
 
+![Comment section](../../.gitbook/assets/nosql-comment-section.png)
+
 When we update a comment we can see that the app is making a PUT request to the "/comments" endpoint. The request body contains the text that we entered and an id.
 
 ```json
 {
-  "id": "5f9f9b9b9b",
+  "id": "a6f317162e2141d497bf97b7a3a06d4d",
   "text": "This is an updated comment"
 }
 ```
@@ -67,12 +69,29 @@ If we use a tool like Burp or ZAP to intercept the comment and we add a nested p
 
 ```json
 {
-  "id": "5f9f9b9b9b",
+  "id": "a6f317162e2141d497bf97b7a3a06d4d",
   "text": {
     "nested": "This is a nested property"
   }
 }
 ```
+
+![Intercepting Request](../../.gitbook/assets/nosql-intercepting.png)
+
+If open the developer tools in the browser and go to the network tab, we can see that the app is making a GET request to the "/comments" endpoint. The response contains a list of comments with our nested property.
+
+```json
+[
+  {
+    "id": "a6f317162e2141d497bf97b7a3a06d4d",
+    "text": {
+      "nested": "This is a nested property"
+    }
+  }
+]
+```
+
+![List of comments in the developer tools](../../.gitbook/assets/nosql-developer-tools.png)
 
 This means that the field is not properly sanitized, and we can inject a NoSQL query.
 
@@ -89,9 +108,11 @@ We can update a comment and then intercept the request and change the id to a Mo
 }
 ```
 
+![Updating all comments](../../.gitbook/assets/nosql-updating-all-comments.png)
+
 If we send the request and refresh the page, we can see that the app updates all the comments with the text we entered.
 
-![NoSQL injection](../../.gitbook/assets/nosql-injection.png)
+![All comments updated](../../.gitbook/assets/nosql-all-comments-updated.png)
 
 ## Additional sources
 
