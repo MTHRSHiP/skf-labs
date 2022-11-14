@@ -1097,14 +1097,20 @@ img{
 	margin-left: 0.25em;
 }
 
-#comments #comment__edit svg{
-	width: 1em;
-	height: 1em;
-	fill:#515594;
-	margin-left: 1em;
-	pointer-events: none;
+#comments #comment__edit {
+  cursor: pointer;
+  height: 1em;
+  width: 1em;
+  margin-left: 1em;
 }
+
+#comments #comment__edit svg {
+  fill: #515594;
+  pointer-events: none;
+}
+
 
 #comment-form{
 	margin-bottom: 2em;
 }
+
