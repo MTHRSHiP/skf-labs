@@ -1389,11 +1389,10 @@ img {
   justify-content: space-between;
 }
 
-.admin-content {
-  height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2em;
+.table-customers {
+  width: 100%;
+}
+
+.table-customers td {
   text-align: center;
 }

@@ -68,3 +68,38 @@ def create_user(username, password, user="user"):
 
     con.commit()
     con.close()
+
+
+def get_customers():
+    # list of customers with name, email, address, phone, and spending
+    return [
+        {
+            "name": "John Doe",
+            "email": "john@doe.com",
+            "address": "123 Main St",
+            "phone": "555-555-5555",
+            "spending": "$100"
+        },
+        {
+            "name": "Jane Doe",
+            "email": "jane@doe.com",
+            "address": "123 Main St",
+            "phone": "555-555-5555",
+            "spending": "$100"
+        },
+        {
+            "name": "John Smith",
+            "email": "john@smith.com",
+            "address": "123 Main St",
+            "phone": "555-555-5555",
+            "spending": "$100"
+        },
+        {
+            "name": "Jane Smith",
+            "email": "jane@smith.com",
+            "address": "123 Main St",
+            "phone": "555-555-5555",
+            "spending": "$100"
+        },
+
+    ]

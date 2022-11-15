@@ -4,7 +4,7 @@ from json import dumps
 
 
 from db.db import seed_db
-from db.users import get_user_by_id, get_user, get_user_by_username, create_user
+from db.users import get_user_by_id, get_user, get_user_by_username, create_user, get_customers
 from db.comments import get_comments, create_comment, update_comment
 
 
@@ -110,7 +110,11 @@ def admin_panel():
         user = get_user_by_id(session['id'])
         if user:
             role = user["role"]
-    return render_template("admin-panel.html", role=role)
+        return render_template("admin-panel.html", role=role, customers=get_customers())
+    if "id" not in session:
+        res = make_response(render_template("admin-panel.html", role=role))
+        res.set_cookie('role', 'guest')
+        return res
 
 
 @app.route("/create-user/", methods=['GET', 'POST'])

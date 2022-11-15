@@ -18,7 +18,7 @@ form.addEventListener("submit", async (e) => {
   const data = await response.json();
 
   if (response.status !== 200) {
-    info.innerText = `Erorr creating user`;
+    info.innerText = `Error creating user`;
   } else {
     info.innerText = "User created successfully";
   }
