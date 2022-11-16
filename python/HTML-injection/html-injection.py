@@ -11,9 +11,9 @@ def start():
     return render_template("index.html")
 
 
-@app.route("/welcome")
-def welcome():
-    return render_template("welcome.html")
+@app.route("/user-panel/")
+def user_panel():
+    return render_template("user-panel.html")
 
 
 @app.errorhandler(404)
