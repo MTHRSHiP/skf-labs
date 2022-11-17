@@ -19,7 +19,7 @@ function App() {
           setMessage(true);
         }}
       >
-        Login
+        Confirm
       </button>
     </div>
   );
