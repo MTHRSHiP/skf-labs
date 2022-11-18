@@ -3,12 +3,25 @@ const error = document.getElementById("error");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const username = document.getElementById("username").value;
+
+  const name = document.getElementById("name").value;
+
+  const lastname = document.getElementById("lastname").value;
   const password = document.getElementById("password").value;
+  const address = document.getElementById("address").value;
+  const phone = document.getElementById("phone").value;
+  const email = document.getElementById("email").value;
 
   const response = await fetch("/register/", {
     method: "POST",
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify({
+      password,
+      name,
+      lastname,
+      address,
+      phone,
+      email,
+    }),
     headers: {
       "Content-Type": "application/json",
     },
@@ -17,6 +30,7 @@ form.addEventListener("submit", async (e) => {
   if (response.status === 200) {
     window.location.href = "/login";
   } else {
-    error.innerText = "User already exists";
+    const data = await response.json();
+    error.innerText = data.error;
   }
 });

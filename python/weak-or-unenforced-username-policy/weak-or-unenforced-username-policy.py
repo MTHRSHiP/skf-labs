@@ -4,7 +4,7 @@ from json import dumps
 
 
 from db.db import seed_db
-from db.users import get_user_by_id, get_user, create_user
+from db.users import get_user_by_id, get_user, create_user, get_user_by_username, get_all_user, generate_username, check_email
 
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
@@ -19,11 +19,11 @@ seed_db()
 def home():
     username = None
 
-    if "id" in session:
-        user = get_user_by_id(session['id'])
-        if user is None:
-            session.clear()
-            redirect(url_for('home'))
+    # if "id" in session:
+    #     user = get_user_by_id(session['id'])
+    #     if user is None:
+    #         session.clear()
+    #         redirect(url_for('home'))
 
     if "username" in session:
         username = session['username']
@@ -36,15 +36,24 @@ def register_route():
     if request.method == 'GET':
         return render_template("register.html")
     elif request.method == 'POST':
-        username = request.get_json()['username']
+        name = request.get_json()['name']
+        lastname = request.get_json()['lastname']
         password = request.get_json()['password']
-        # user = get_user_by_username(username)
-        # if user:
-        #     error = "User already exists"
-        #     return dumps({"error": error}, default=str), 403
-        # else:
-        create_user(username, password)
-        return dumps({"message": "User created"}, default=str)
+        address = request.get_json()['address']
+        phone = request.get_json()['phone']
+        email = request.get_json()['email']
+        if name == "" or lastname == "" or password == "" or address == "" or phone == "" or email == "":
+            return dumps({"error": "Please fill all fields"}), 400
+
+        username = generate_username(name, lastname)
+
+        emailExists = check_email(email)
+        if emailExists:
+            return dumps({"success": False, "error": "Email already exists"}), 403
+        else:
+            create_user(name, lastname, username,
+                        password, address, phone, email)
+            return dumps({"success": True, "message": "User created", "username": username})
 
 
 @app.route("/login/", methods=['GET', 'POST'])
@@ -52,9 +61,9 @@ def login_route():
     if request.method == 'GET':
         return render_template("login.html")
     elif request.method == 'POST':
-        username = request.get_json()['username']
+        email = request.get_json()['email']
         password = request.get_json()['password']
-        user = get_user(username, password)
+        user = get_user(email, password)
         if user:
             session['id'] = user["id"]
             session['username'] = user["username"]
@@ -62,6 +71,27 @@ def login_route():
         else:
             error = "Invalid username or password"
             return dumps({"error": error}, default=str), 401
+
+
+@app.route("/user-detail/")
+def user_detail():
+    if "id" in session:
+        user = get_user_by_id(session['id'])
+        return render_template("user-detail.html", user=user)
+    else:
+        return redirect(url_for('home'))
+
+
+@app.route("/users/")
+def users_route():
+    users = get_all_user()
+    return dumps(users, default=str)
+
+
+@app.route("/users/<username>")
+def user_route(username):
+    user = get_user_by_username(username)
+    return dumps(user, default=str)
 
 
 @app.route("/logout/")

@@ -130,26 +130,15 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="panel panel-default">
-                    <div class="panel-heading">Login</div>
+                    <div class="panel-heading">User Detail</div>
                     <div class="panel-body">
-                      <div class="comments__section">
-                        <form id="login-form">
-                          <input
-                            type="text"
-                            name="email"
-                            id="email"
-                            placeholder="email"
-                          />
-                          <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            placeholder="password"
-                          />
-                          <input type="submit" value="Login" />
-                        </form>
-                        <div id="error"></div>
-                      </div>
+                      {% if user %}
+                      <div
+                        id="username"
+                        data-username="{{user.username}}"
+                      ></div>
+                      {% endif %}
+                      <div id="user-info"></div>
                     </div>
                   </div>
                 </div>
@@ -236,7 +225,7 @@
 
     <script src="/static/js/jquery-3.6.0.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/login.js"></script>
+    <script src="/static/js/user-detail.js"></script>
 
     <script>
       const checkbox = document.getElementById("checkbox");

@@ -24,14 +24,15 @@
         <div class="inner flx flx-ac flx-jsb">
           <div class="left flx flx-ac">
             <div class="logo">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 75.3 86.9"
-                style="enable-background: new 0 0 75.3 86.9"
-                xml:space="preserve"
-              >
-                <path
-                  d="m37.7
+              <a href="/">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 75.3 86.9"
+                  style="enable-background: new 0 0 75.3 86.9"
+                  xml:space="preserve"
+                >
+                  <path
+                    d="m37.7
 									86.9-.7-.4c-.9-.5-1.9-1.1-2.8-1.8-2.7-2-5-4.5-6.6-7.5-1.7-3-2.8-6.2-3.3-9.6
 									0-.3-.1-.5-.1-.8-.2.1-.4.2-.7.3-3.1 1.3-6.5 2-9.9 2-3.5
 									0-6.8-.7-10-2-1-.4-1.9-.9-2.8-1.4l-.8-.4v-.9c0-1.1.1-2.1.2-3.1.5-3.5
@@ -74,8 +75,9 @@
 									4.6-4.6 1.7-2.4 3-5 3.8-7.8.5-1.9.7-3.9.7-5.8 0-.9
 									0-1.9-.1-2.9-.4-2.9-1.3-5.8-2.9-8.4-1.5-2.7-3.5-5-6-6.8-.5-.3-1-.7-1.6-1-.6.3-1.1.7-1.7
 									1.1-2.4 1.8-4.3 4.1-5.8 6.7-1.5 2.7-2.5 5.5-3 8.5.2.6.1 1.3.1 1.9z"
-                />
-              </svg>
+                  />
+                </svg>
+              </a>
             </div>
             <div class="name pl1">Security Knowledge Framework</div>
           </div>
@@ -131,22 +133,42 @@
                     <div class="panel-heading">Register</div>
                     <div class="panel-body">
                       <div class="comments__section">
-                        <form
-                          id="register-form"
-                          action="/register/"
-                          method="POST"
-                        >
+                        <form id="register-form">
                           <input
                             type="text"
-                            id="username"
-                            name="username"
-                            placeholder="username"
+                            id="name"
+                            name="name"
+                            placeholder="name"
+                          />
+                          <input
+                            type="text"
+                            id="lastname"
+                            name="lastname"
+                            placeholder="lastname"
                           />
                           <input
                             type="password"
-                            name="password"
                             id="password"
+                            name="password"
                             placeholder="password"
+                          />
+                          <input
+                            type="text"
+                            id="address"
+                            name="address"
+                            placeholder="address"
+                          />
+                          <input
+                            type="text"
+                            id="phone"
+                            name="phone"
+                            placeholder="phone"
+                          />
+                          <input
+                            type="text"
+                            id="email"
+                            name="email"
+                            placeholder="email"
                           />
                           <input type="submit" value="Register" />
                           <div id="error"></div>

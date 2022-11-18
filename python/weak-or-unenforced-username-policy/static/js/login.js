@@ -3,12 +3,12 @@ const error = document.getElementById("error");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const username = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
   const response = await fetch("/login/", {
     method: "POST",
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify({ email, password }),
     headers: {
       "Content-Type": "application/json",
     },
@@ -17,6 +17,7 @@ form.addEventListener("submit", async (e) => {
   if (response.status === 200) {
     window.location.href = "/";
   } else {
-    error.innerText = "Invalid username or password";
+    const data = await response.json();
+    error.innerText = data.error;
   }
 });

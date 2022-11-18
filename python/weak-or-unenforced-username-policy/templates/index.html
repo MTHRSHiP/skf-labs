@@ -128,36 +128,16 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="panel panel-default">
-                    <div class="panel-heading">User Registration Process</div>
-                    <span data-username="{{user}}" id="username"></span>
+                    <div class="panel-heading">
+                      Weak or Unenforced Username Policy
+                    </div>
                     <div class="panel-body">
-                      <img
-                        src="https://picsum.photos/seed/picsum/536/354"
-                        alt="random picture"
-                      />
-                      <div class="comments__section">
-                        <h3>Comments:</h3>
-                        <div id="comments"></div>
-                        {% if user %}
-                        <span>Add a comment:</span>
-                        <form
-                          id="comment-form"
-                          action="/comments/"
-                          method="POST"
-                        >
-                          <input
-                            type="text"
-                            name="text"
-                            placeholder="Comment"
-                          />
-                          <input type="submit" value="Submit" />
-                        </form>
-                        <a href="/logout">logout</a>
-                        {% else %}
-                        <a href="/login">login</a>
-                        <a href="/register">register</a>
-                        {% endif %}
-                      </div>
+                      {% if user %}
+                      <a href="/logout">logout</a>
+                      {% else %}
+                      <a href="/login">login</a>
+                      <a href="/register">register</a>
+                      {% endif %}
                     </div>
                   </div>
                 </div>
@@ -244,7 +224,6 @@
 
     <script src="/static/js/jquery-3.6.0.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/comments.js"></script>
 
     <script>
       const checkbox = document.getElementById("checkbox");
