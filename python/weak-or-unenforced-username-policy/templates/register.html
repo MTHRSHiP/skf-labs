@@ -134,42 +134,34 @@
                     <div class="panel-body">
                       <div class="comments__section">
                         <form id="register-form">
-                          <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="name"
-                          />
-                          <input
-                            type="text"
-                            id="lastname"
-                            name="lastname"
-                            placeholder="lastname"
-                          />
+                          <label for="name" class="input__label">Name:</label>
+                          <input type="text" id="name" name="name" />
+
+                          <label for="lastname" class="input__label"
+                            >Lastname:</label
+                          >
+                          <input type="text" id="lastname" name="lastname" />
+
+                          <label for="password" class="input__label"
+                            >Password:</label
+                          >
                           <input
                             type="password"
                             id="password"
                             name="password"
-                            placeholder="password"
                           />
-                          <input
-                            type="text"
-                            id="address"
-                            name="address"
-                            placeholder="address"
-                          />
-                          <input
-                            type="text"
-                            id="phone"
-                            name="phone"
-                            placeholder="phone"
-                          />
-                          <input
-                            type="text"
-                            id="email"
-                            name="email"
-                            placeholder="email"
-                          />
+
+                          <label for="address" class="input__label"
+                            >Address:</label
+                          >
+                          <input type="text" id="address" name="address" />
+
+                          <label for="phone" class="input__label">Phone:</label>
+                          <input type="text" id="phone" name="phone" />
+
+                          <label for="email" class="input__label">Email:</label>
+                          <input type="text" id="email" name="email" />
+
                           <input type="submit" value="Register" />
                           <div id="error"></div>
                         </form>

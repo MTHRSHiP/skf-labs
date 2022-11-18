@@ -1383,3 +1383,9 @@ img {
 #comment-form {
   margin-bottom: 2em;
 }
+
+#register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
