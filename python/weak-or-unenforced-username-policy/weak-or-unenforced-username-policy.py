@@ -73,11 +73,11 @@ def login_route():
             return dumps({"error": error}, default=str), 401
 
 
-@app.route("/user-detail/")
+@app.route("/profile/")
 def user_detail():
     if "id" in session:
         user = get_user_by_id(session['id'])
-        return render_template("user-detail.html", user=user)
+        return render_template("profile.html", user=user)
     else:
         return redirect(url_for('home'))
 
@@ -91,6 +91,8 @@ def users_route():
 @app.route("/users/<username>")
 def user_route(username):
     user = get_user_by_username(username)
+    if not user:
+        return dumps(user, default=str), 404
     return dumps(user, default=str)
 
 
