@@ -57,12 +57,12 @@ def login_route():
         password = request.get_json()['password']
         captcha = request.get_json()['captcha']
         captcha = str(captcha)
+        if username == "" or password == "" or captcha == "":
+            return dumps({"error": "Please fill all fields"}), 400
         if check_int(captcha):
             captcha = int(captcha)
         else:
             return dumps({"error": "Incorrect captcha"}), 400
-        if username == "" or password == "" or captcha == "":
-            return dumps({"error": "Please fill all fields"}), 400
         if captcha not in valid_captchas:
             return dumps({"error": "Incorrect captcha"}), 400
         valid_captchas.remove(captcha)
