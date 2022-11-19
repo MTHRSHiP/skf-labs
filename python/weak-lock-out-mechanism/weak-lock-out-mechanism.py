@@ -10,7 +10,9 @@ from db.users import get_user_by_id, get_user, create_user, get_user_by_username
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 app.config['DEBUG'] = True
-app.secret_key = 'mysecret'
+random_string = ''.join(
+    [choice('abcdefghijklmnopqrstuvwxyz0123456789') for i in range(20)])
+app.secret_key = random_string
 
 
 seed_db()
@@ -19,12 +21,6 @@ seed_db()
 @app.route("/")
 def home():
     username = None
-
-    # if "id" in session:
-    #     user = get_user_by_id(session['id'])
-    #     if user is None:
-    #         session.clear()
-    #         redirect(url_for('home'))
 
     if "username" in session:
         username = session['username']
@@ -61,7 +57,7 @@ def login_route():
         password = request.get_json()['password']
         captcha = request.get_json()['captcha']
         captcha = str(captcha)
-        if captcha.isdigit():
+        if check_int(captcha):
             captcha = int(captcha)
         else:
             return dumps({"error": "Incorrect captcha"}), 400
@@ -70,10 +66,7 @@ def login_route():
         if captcha not in valid_captchas:
             return dumps({"error": "Incorrect captcha"}), 400
         valid_captchas.remove(captcha)
-        print(username)
-        print(password)
         user = get_user(username, password)
-        print(user)
         if user:
             session['id'] = user["id"]
             session['username'] = user["username"]
@@ -122,10 +115,16 @@ def generate_captcha():
     # random operator
     operator = choice(['+', '-', '*'])
     # calculate the result
-    result = eval(f"{ number1 } { operator } { number2 }")
+    result = eval(f"({ number1 }) { operator } ({ number2 })")
     # store the result in a temporary list
     valid_captchas.append(result)
     return number1, number2, operator
+
+
+def check_int(s):
+    if s[0] in ('-', '+'):
+        return s[1:].isdigit()
+    return s.isdigit()
 
 
 @app.route("/captcha/")

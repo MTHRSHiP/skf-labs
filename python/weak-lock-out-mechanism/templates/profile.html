@@ -133,12 +133,8 @@
                     <div class="panel-heading">User Detail</div>
                     <div class="panel-body">
                       {% if user %}
-                      <div
-                        id="username"
-                        data-username="{{user.username}}"
-                      ></div>
+                      <div id="user-info">{{user.username}}</div>
                       {% endif %}
-                      <div id="user-info"></div>
                     </div>
                   </div>
                 </div>
@@ -225,7 +221,6 @@
 
     <script src="/static/js/jquery-3.6.0.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/user-detail.js"></script>
 
     <script>
       const checkbox = document.getElementById("checkbox");

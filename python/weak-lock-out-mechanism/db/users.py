@@ -3,6 +3,7 @@ import sqlite3
 
 def seed_users():
     users = [
+        {"username": 'admin', "password": 'qweasdzxc'},
         {"username": 'John', "password": '07RYbe$!9y11'},
         {"username": 'Jane', "password": '07RYbe$!9y12'},
     ]
@@ -64,10 +65,10 @@ def get_user_by_id(id):
     con = sqlite3.connect("db.db")
     cur = con.cursor()
     cur.execute(
-        "SELECT id, name, lastname, username, address, phone, email FROM users WHERE id = ?", (id,))
+        "SELECT id, username FROM users WHERE id = ?", (id,))
     user = cur.fetchone()
     con.close()
-    return {"id": user[0], "name": user[1], "lastname": user[2], "username": user[3], "address": user[4], "phone": user[5], "email": user[6]}
+    return {"id": user[0], "username": user[1]}
 
 
 def create_user(username, password):

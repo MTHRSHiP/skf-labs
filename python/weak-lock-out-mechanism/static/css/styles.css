@@ -1389,3 +1389,17 @@ img {
   flex-direction: column;
   align-items: flex-start;
 }
+
+.captcha {
+  display: flex;
+  align-items: center;
+}
+
+.captcha .eq {
+  margin-left: 0.5em;
+}
+
+.captcha input[name="captcha"] {
+  margin-left: 0.5em;
+  max-width: 100px;
+}
