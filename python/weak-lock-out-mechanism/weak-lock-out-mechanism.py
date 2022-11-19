@@ -49,21 +49,10 @@ def register_route():
             return dumps({"success": True, "message": "User created", "username": username})
 
 
-valid_captchas = []
-
-
 @app.route("/login/", methods=['GET', 'POST'])
 def login_route():
-    # random number from 1 to 100
-    number1 = randint(1, 100)
-    number2 = randint(1, 100)
-    # random operator
-    operator = choice(['+', '-', '*'])
-    # calculate the result
-    result = eval(f"{ number1 } { operator } { number2 }")
-    # store the result in a temporary list
-    valid_captchas.append(result)
     if request.method == 'GET':
+        number1, number2, operator = generate_captcha()
         return render_template("login.html", number1=number1, number2=number2, operator=operator)
     elif request.method == 'POST':
         if "captcha" not in request.get_json() or "username" not in request.get_json() or "password" not in request.get_json():
@@ -75,11 +64,11 @@ def login_route():
         if captcha.isdigit():
             captcha = int(captcha)
         else:
-            return dumps({"error": "Captcha is incorrect"}), 400
+            return dumps({"error": "Incorrect captcha"}), 400
         if username == "" or password == "" or captcha == "":
             return dumps({"error": "Please fill all fields"}), 400
         if captcha not in valid_captchas:
-            return dumps({"error": "Captcha is incorrect"}), 400
+            return dumps({"error": "Incorrect captcha"}), 400
         valid_captchas.remove(captcha)
         print(username)
         print(password)
@@ -121,6 +110,29 @@ def user_route(username):
 def logout():
     session.clear()
     return redirect(url_for('home'))
+
+
+valid_captchas = []
+
+
+def generate_captcha():
+   # random number from 1 to 100
+    number1 = randint(1, 100)
+    number2 = randint(1, 100)
+    # random operator
+    operator = choice(['+', '-', '*'])
+    # calculate the result
+    result = eval(f"{ number1 } { operator } { number2 }")
+    # store the result in a temporary list
+    valid_captchas.append(result)
+    return number1, number2, operator
+
+
+@app.route("/captcha/")
+def captcha():
+    number1, number2, operator = generate_captcha()
+    # return the captcha
+    return dumps({"number1": number1, "number2": number2, "operator": operator}, default=str)
 
 
 @app.errorhandler(404)
