@@ -39,7 +39,6 @@ def login(password):
     return res.json()
 
 
-# import file
 with open("passwords.txt", "r") as f:
     passwords = f.readlines()
     # remove \n
